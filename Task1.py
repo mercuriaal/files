@@ -1,43 +1,30 @@
-cook_book = {}
-ingregient_name = 'ingregient_name'
-quantity = 'quantity'
-measure = 'measure'
-list = []
-dish_name = 0
-list2 = [ingregient_name, quantity, measure]
-with open('recipies', encoding= 'utf-8') as recipie:
-    splitted_source_text = recipie.read().split('\n')
-    element = ''
-    for string in splitted_source_text:
-        if string != '':
-            element += string + '\n'
-        else:
-            list.append(element)
-            element = ''
-for recipie_sample in list:
-    splitted_recipie_sample = recipie_sample.split('\n')
-    cook_book[splitted_recipie_sample[dish_name]] = []
-    for recipie_part in splitted_recipie_sample:
-        if recipie_part == '':
-            break
-        else:
-            if recipie_part == splitted_recipie_sample[0]:
-                continue
+class Cookbook():
+    def turn_into_dict(self):
+        list_of_recipes = []
+        cook_book = {}
+        with open('recipes', encoding='utf-8') as recipe:
+            text = recipe.read().split('\n')
+        element = ''
+        for string in text:
+            if string != '':
+                element += string + '\n'
             else:
-                if recipie_part == splitted_recipie_sample[1]:
-                    continue
-                ingregient_list = recipie_part.split('|')
-                count = 0
-                for i in list2:
-                    dict = {}
-                    dict[i] = ingregient_list[count].strip()
-                    count += 1
-                    cook_book[splitted_recipie_sample[dish_name]].append(dict)
-print(cook_book)
+                list_of_recipes.append(element)
+                element = ''
+        for recipe in list_of_recipes:
+            splited_recipe = recipe.split('\n')
+            cook_book[splited_recipe[0]] = []
+            count = int(splited_recipe[1])
+            list_of_ingredients = splited_recipe[2:count + 2]
+            for ingredient in list_of_ingredients:
+                ingredient_description = ingredient.split('|')
+                cook_book[splited_recipe[0]].append(dict(ingredient_name=ingredient_description[0].strip(),
+                quantity=ingredient_description[1].strip(), measure=ingredient_description[2].strip()))
+        return cook_book
 
 
-
-
+recipes = Cookbook()
+print(recipes.turn_into_dict())
 
 
 
