@@ -1,7 +1,7 @@
 def turn_into_dict():
     list_of_recipes = []
     cook_book = {}
-    with open('recipes', encoding='utf-8') as recipe:
+    with open('Задача №1 + №2/recipes', encoding='utf-8') as recipe:
         text = recipe.read().split('\n')
     element = ''
     for string in text:
