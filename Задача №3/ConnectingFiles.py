@@ -23,7 +23,7 @@ enhanced_text = sort_and_connect_files('Задача №3/Text files')
 
 
 def write_a_new_file(text):
-    with open('New_File', 'w', encoding='utf-8') as final_file:
+    with open('Задача №3/New_File', 'w', encoding='utf-8') as final_file:
         final_file.write(text)
     return ''
 
